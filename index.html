@@ -195,8 +195,9 @@
 
     <section class="container" id="projects">
       <p class="eyebrow">Selected Work</p>
-      <h2>Featured Project</h2>
+      <h2>Featured Projects</h2>
 
+      <!-- PROYECTO 1: MORA CODE AI -->
       <article class="card">
         <div class="project-top">
           <div>
@@ -236,6 +237,47 @@
           </a>
         </div>
       </article>
+
+      <!-- PROYECTO 2: OPEN BAR (NUEVO) -->
+      <article class="card" style="margin-top: 24px;">
+        <div class="project-top">
+          <div>
+            <h3 style="font-size:1.6rem;margin-top:0">Open Bar</h3>
+            <p class="muted">Simulador de Truco Multijugador con Reconocimiento de Voz</p>
+          </div>
+          <span class="tag">Juego Indie / Beta</span>
+        </div>
+
+        <!-- ESPACIO PARA TUS CAPTURAS DE PANTALLA -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 20px 0;">
+          <img src="logopng" alt="Logo" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+          <img src="menuprincipal.pn" alt="Menu Principal" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+          <img src="modoline.png" alt="Modo online" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+          <img src="eleccionpersonaje.png" alt="Eleccion Personaje" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+          <img src="eleccionjuego.png" alt="Eleccion juego" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+          <img src="mesaprincipal.png" alt="Mesa principal" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+
+        <p>
+          Adaptación digital inmersiva del clásico Truco Argentino. Combina un entorno visual estilizado con mecánicas innovadoras, permitiendo jugar de forma clásica o a través de comandos de voz reales, replicando la experiencia auténtica de "cantar" las jugadas al micrófono.
+        </p>
+
+        <h4>Características Principales</h4>
+        <ul>
+          <li><strong>Sistema de Voz en Tiempo Real:</strong> Script dedicado en Python conectado vía UDP para procesar audio local e interpretar intenciones y volumen (gritos).</li>
+          <li><strong>Arquitectura Multijugador:</strong> Flujo de red nativo (ENetMultiplayerPeer) sincronizando Lobby, Avatares y Mesa sin latencia.</li>
+          <li><strong>Motor de Reglas y AI:</strong> Árbitro digital estricto (cálculos de envido, puntos a 24/30 secas) e Inteligencia Artificial basada en probabilidades lógicas para el modo local.</li>
+        </ul>
+
+        <h4>Tecnologías</h4>
+        <div>
+          <span class="tag">Godot Engine 4</span>
+          <span class="tag">GDScript</span>
+          <span class="tag">Python</span>
+          <span class="tag">Redes UDP / P2P</span>
+        </div>
+      </article>
+
     </section>
 
     <section class="container">
