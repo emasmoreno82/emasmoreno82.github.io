@@ -153,65 +153,65 @@
       nav a { margin-left: 8px; }
       h1 { letter-spacing: -1px; }
     }
-    /* --- Estilos para la sección de Certificaciones --- */
+   /* --- Estilos para la sección de Certificaciones --- */
 
 .certifications-section {
-    padding: 40px 0; /* Ajusta el espaciado según el resto de tu página */
+    padding: 40px 0;
     width: 100%;
 }
 
 .certifications-section h2 {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: var(--text);
+    color: var(--text); /* Tu variable de color */
 }
 
 .certification-card {
     display: flex;
-    gap: 20px;
-    background-color: #1e1e1e; /* Color de fondo de la tarjeta. Ajusta si usas otro */
-    border: 1px solid #333;
+    flex-direction: column; /* Esto apila los elementos verticalmente */
+    align-items: flex-start; /* Alinea todo a la izquierda */
+    gap: 15px; /* Espacio entre el título, la imagen y el texto */
+    background-color: rgba(255, 255, 255, 0.05); /* Fondo sutil oscuro */
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    padding: 20px;
-    align-items: center;
-    flex-wrap: wrap; /* Permite que se adapte a pantallas pequeñas */
+    padding: 25px;
 }
 
+/* Estilo para el título dentro de la tarjeta */
+.certification-card h3 {
+    margin: 0;
+    color: var(--text);
+    font-size: 1.4rem;
+}
+
+/* Control del tamaño de la imagen */
 .certification-image {
-    flex: 0 0 300px; /* Ancho base de la imagen */
-    max-width: 100%;
+    width: 100%;
+    max-width: 550px; /* Ajusta este número si quieres la imagen más grande o chica */
 }
 
 .certification-image img {
     width: 100%;
     height: auto;
-    border-radius: 4px;
-    border: 1px solid #444;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     display: block;
 }
 
 .certification-info {
-    flex: 1;
-    min-width: 250px;
-}
-
-.certification-info h3 {
-    margin-top: 0;
-    margin-bottom: 8px;
-    color: var(--text);
-    font-size: 1.3rem;
+    width: 100%;
 }
 
 .certification-info .issuer {
     font-weight: 600;
-    color: var(--accent); /* Usa tu color de acento para resaltar las instituciones */
-    margin-bottom: 5px;
-    font-size: 0.95rem;
+    color: var(--accent); /* Usa tu color de acento para las instituciones */
+    margin: 0 0 5px 0;
+    font-size: 1rem;
 }
 
 .certification-info .date {
-    font-size: 0.85rem;
-    color: #888; /* Color gris para la fecha */
+    font-size: 0.9rem;
+    color: #a0a0a0; /* Gris claro para la fecha */
     margin-bottom: 15px;
 }
 
@@ -382,20 +382,23 @@
         </div>
       </div>
     </section>
-    <!-- Sección de Certificaciones -->
+   <!-- Certifications Section -->
 <section id="certifications" class="certifications-section">
     <h2>Certifications</h2>
     
     <div class="certification-card">
-        <!-- Reemplaza 'certificado-ia.jpg' por el nombre exacto de tu archivo -->
+        <!-- Title goes first -->
+        <h3>Introduction to Artificial Intelligence</h3>
+        
+        <!-- Image below the title -->
         <div class="certification-image">
             <img src="certificado-ia.jpeg" alt="Certificate: Introduction to Artificial Intelligence">
         </div>
         
+        <!-- The rest of the info goes below the image -->
         <div class="certification-info">
-            <h3>Introduction to Artificial Intelligence</h3>
             <p class="issuer">Municipality of Maipú, School of Government & UNCuyo</p>
-            <p class="date">First Semester 2025 • 6 Hours</p>
+            <p class="date">First semester 2025 • 6 hours</p>
             <p class="description">
                 Completed a 6-hour specialized workshop on the fundamentals of Artificial Intelligence. 
                 Organized by the National University of Cuyo (UNCuyo) and the Municipality of Maipú, 
