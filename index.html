@@ -1,375 +1,314 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Emanuel Moreno's software development portfolio. Explore Mora Code AI, an AI-powered programming tutor for Android.">
-  <title>Emanuel Moreno | Software Developer</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emanuel Moreno | Software Developer</title>
+<meta name="description" content="Emanuel Moreno's software development portfolio. Mora Code AI, an AI programming tutor for Android, and Open Bar, a multiplayer Truco game with voice recognition.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,400;7..72,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f3efe6;
+    --paper-2: #e9e3d5;
+    --ink: #1d1a16;
+    --ink-soft: #5b554b;
+    --line: #cfc7b4;
+    --accent: #b8431a;
+    --display: "Bricolage Grotesque", Georgia, serif;
+    --body: "Literata", Georgia, serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  img { max-width: 100%; display: block; }
 
-  <style>
-    :root {
-      --bg: #0b1020;
-      --panel: #121a2d;
-      --text: #f1f5f9;
-      --muted: #aab6cc;
-      --accent: #75e0c1;
-      --border: #29354d;
-    }
+  .shell {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 64px;
+  }
 
-    * { box-sizing: border-box; }
+  /* ---------- sidebar ---------- */
+  .side {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    padding: 48px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .side .name {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.1;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .side .role {
+    font-family: var(--mono);
+    font-size: .78rem;
+    color: var(--ink-soft);
+    margin-top: 10px;
+  }
+  .side nav { margin-top: 48px; display: flex; flex-direction: column; gap: 6px; }
+  .side nav a {
+    font-family: var(--mono);
+    font-size: .85rem;
+    text-decoration: none;
+    padding: 4px 0;
+    border-bottom: 1px solid transparent;
+    width: fit-content;
+  }
+  .side nav a span { color: var(--accent); margin-right: 8px; }
+  .side nav a:hover { border-bottom-color: var(--accent); }
+  .side .foot { font-family: var(--mono); font-size: .75rem; color: var(--ink-soft); }
+  .side .foot a { display: block; margin-top: 4px; }
 
-    html { scroll-behavior: smooth; }
+  /* ---------- main ---------- */
+  main { padding: 72px 0 96px; }
+  section { margin-bottom: 112px; }
+  .label {
+    font-family: var(--mono);
+    font-size: .78rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .label::after { content: ""; height: 1px; background: var(--line); flex: 1; }
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: system-ui, -apple-system, sans-serif;
-      line-height: 1.7;
-    }
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 5.4vw, 4.1rem);
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    max-width: 16ch;
+  }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lede { margin-top: 28px; max-width: 54ch; font-size: 1.15rem; color: var(--ink-soft); }
+  .links { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px 28px; font-family: var(--mono); font-size: .9rem; }
 
-    a { color: var(--accent); }
+  /* ---------- projects ---------- */
+  .project { padding: 40px 0; border-top: 1px solid var(--ink); }
+  .project:last-child { border-bottom: 1px solid var(--ink); }
+  .project header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .project h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.9rem;
+    letter-spacing: -0.015em;
+  }
+  .meta { font-family: var(--mono); font-size: .78rem; color: var(--ink-soft); }
+  .tagline { margin: 6px 0 20px; color: var(--ink-soft); font-style: italic; }
+  .project p { max-width: 62ch; }
+  .project ul { margin: 20px 0 0 0; list-style: none; max-width: 62ch; }
+  .project li { padding: 8px 0 8px 22px; position: relative; border-top: 1px dotted var(--line); }
+  .project li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); }
+  .stack { margin-top: 20px; font-family: var(--mono); font-size: .82rem; color: var(--ink-soft); }
+  .stack b { font-weight: 500; color: var(--ink); }
+  .cta { display: inline-block; margin-top: 20px; font-family: var(--mono); font-size: .88rem; }
 
-    .container {
-      width: min(100% - 36px, 960px);
-      margin: auto;
-    }
+  .video { margin-top: 28px; aspect-ratio: 16 / 9; background: var(--ink); border: 1px solid var(--ink); }
+  .video iframe { width: 100%; height: 100%; border: 0; }
 
-    header {
-      padding: 22px 0;
-      border-bottom: 1px solid var(--border);
-    }
+  .shots {
+    margin-top: 28px;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scroll-snap-type: x proximity;
+  }
+  .shots figure { flex: 0 0 auto; scroll-snap-align: start; }
+  .shots img { height: 220px; width: auto; border: 1px solid var(--line); background: var(--paper-2); }
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
+  /* ---------- working with ---------- */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .two h3 { font-family: var(--display); font-size: 1.25rem; margin-bottom: 8px; }
+  .two p { color: var(--ink-soft); }
 
-    .logo {
-      color: var(--text);
-      font-weight: 800;
-      font-size: 1.15rem;
-      text-decoration: none;
-    }
+  /* ---------- certificate ---------- */
+  .cert { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 40px; align-items: start; }
+  .cert h3 { font-family: var(--display); font-size: 1.4rem; }
+  .cert .meta { margin: 6px 0 14px; }
+  .cert img { border: 1px solid var(--line); }
 
-    nav a {
-      text-decoration: none;
-      margin-left: 16px;
-    }
+  /* ---------- contact ---------- */
+  .contact p { max-width: 52ch; font-size: 1.15rem; }
+  .contact a.big {
+    display: inline-block;
+    margin-top: 24px;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+    letter-spacing: -0.015em;
+  }
+  .copy { font-family: var(--mono); font-size: .75rem; color: var(--ink-soft); margin-top: 72px; }
 
-    .hero { padding: 90px 0 70px; }
-
-    .eyebrow {
-      color: var(--accent);
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-size: .8rem;
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 7vw, 4.8rem);
-      line-height: 1.1;
-      margin: 16px 0;
-      letter-spacing: -2px;
-    }
-
-    h2 { font-size: 2rem; }
-
-    .intro {
-      max-width: 680px;
-      color: var(--muted);
-      font-size: 1.15rem;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 12px 18px;
-      border: 1px solid var(--accent);
-      border-radius: 9px;
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .primary {
-      background: var(--accent);
-      color: #07131a;
-    }
-
-    section { padding: 35px 0 55px; }
-
-    .muted { color: var(--muted); }
-
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 26px;
-    }
-
-    .project-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .tag {
-      display: inline-block;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 5px 11px;
-      margin: 5px 5px 0 0;
-      color: var(--muted);
-      font-size: .9rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 28px 0;
-      color: var(--muted);
-    }
-
-    @media (max-width: 600px) {
-      .hero { padding-top: 60px; }
-      .grid { grid-template-columns: 1fr; }
-      nav a { margin-left: 8px; }
-      h1 { letter-spacing: -1px; }
-    }
-  
-  </style>
+  /* ---------- responsive ---------- */
+  @media (max-width: 860px) {
+    .shell { grid-template-columns: 1fr; gap: 0; }
+    .side { position: static; height: auto; padding: 28px 0 0; flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 12px 24px; }
+    .side nav { margin: 0; flex-direction: row; gap: 18px; }
+    .side .role, .side .foot { display: none; }
+    main { padding-top: 48px; }
+    section { margin-bottom: 80px; }
+    .two, .cert { grid-template-columns: 1fr; }
+    .cert img { max-width: 320px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
 </head>
-
 <body>
-  <header>
-    <div class="container">
-      <nav>
-        <a class="logo" href="#">EM<span style="color:var(--accent)">.</span></a>
-        <div>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </div>
+<div class="shell">
+
+  <aside class="side">
+    <div>
+      <a class="name" href="#top">Emanuel<br>Moreno</a>
+      <p class="role">software developer<br>Mendoza, Argentina</p>
+      <nav aria-label="Main">
+        <a href="#work"><span>01</span>Work</a>
+        <a href="#stack"><span>02</span>Interests</a>
+        <a href="#certs"><span>03</span>Certificates</a>
+        <a href="#contact"><span>04</span>Contact</a>
       </nav>
     </div>
-  </header>
+    <div class="foot">
+      <a href="https://github.com/emasmoreno82">github.com/emasmoreno82 ↗</a>
+    </div>
+  </aside>
 
-  <main>
-    <section class="hero container" id="about">
-      <div class="eyebrow">Software Development Portfolio</div>
+  <main id="top">
 
-      <h1>Hi, I'm Emanuel Moreno.</h1>
-
-      <p class="intro">
-        I'm a software development student focused on building
-        practical applications and exploring AI-powered solutions.
-        I enjoy turning ideas into working software and continuously
-        improving my programming skills.
+    <section>
+      <p class="label">Portfolio</p>
+      <h1>I make apps and games, and I'm still learning <em>how to make them well.</em></h1>
+      <p class="lede">
+        I'm a software development student. Right now I'm working on an Android tutor that explains code out loud
+        and a multiplayer Truco game you can play by shouting at your microphone.
       </p>
-
-      <div class="buttons">
-        <a class="button primary" href="#projects">Explore my projects ↓</a>
-        <a class="button"
-           href="https://github.com/emasmoreno82"
-           target="_blank" rel="noopener noreferrer">
-          GitHub Profile ↗
-        </a>
-      </div>
+      <p class="links">
+        <a href="#work">See the projects ↓</a>
+        <a href="https://github.com/emasmoreno82">GitHub ↗</a>
+      </p>
     </section>
 
-    <section class="container" id="projects">
-      <p class="eyebrow">Selected Work</p>
-      <h2>Featured Projects</h2>
+    <section id="work">
+      <p class="label">01 / Work</p>
 
-      <!-- PROYECTO 1: MORA CODE AI -->
-      <article class="card">
-        <div class="project-top">
-          <div>
-            <h3 style="font-size:1.6rem;margin-top:0">Mora Code AI</h3>
-            <p class="muted">AI-powered programming tutor for Android</p>
-          </div>
-          <span class="tag">Personal Project</span>
-        </div>
-
+      <article class="project">
+        <header>
+          <h3>Mora Code AI</h3>
+          <span class="meta">Personal project · Android</span>
+        </header>
+        <p class="tagline">An AI programming tutor for Android.</p>
         <p>
-          Mora Code AI is an Android application designed to support
-          programming learners through AI-assisted guidance, code
-          analysis and spoken explanations.
+          An app for people learning to code. You give it code, and it explains it back to you, checks it,
+          and can read the explanation aloud.
         </p>
-
-        <h4>Key features</h4>
         <ul>
-          <li>AI-assisted programming guidance.</li>
-          <li>Code analysis and explanations.</li>
-          <li>Text-to-Speech support.</li>
-          <li>Integration with the Google Gemini API.</li>
+          <li>AI-assisted programming guidance</li>
+          <li>Code analysis and explanations</li>
+          <li>Text-to-speech</li>
+          <li>Google Gemini API integration</li>
         </ul>
-
-        <h4>Technologies</h4>
-        <!-- VIDEO DE YOUTUBE (Adaptado para Short) -->
-        <div style="margin-top: 24px; text-align: center;">
-          <iframe 
-            style="width: 100%; max-width: 315px; aspect-ratio: 9/16; border-radius: 8px; border: 1px solid var(--border);" 
-            src="https://www.youtube.com/embed/D2XjvHEnFPM" 
-            title="Video demostracion de Mora Code AI" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            allowfullscreen>
-          </iframe>
-         </div>
-        
-        <div style="margin-top: 16px;">
-          <span class="tag">Kotlin</span>
-          <span class="tag">Android Studio</span>
-          <span class="tag">Gemini API</span>
-          <span class="tag">Text-to-Speech</span>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/D2XjvHEnFPM" title="Mora Code AI demo" loading="lazy" allowfullscreen></iframe>
         </div>
-
-        <div class="buttons">
-          <a class="button primary"
-             href="https://github.com/emasmoreno82/MoraCodeAI"
-             target="_blank" rel="noopener noreferrer">
-            View Source Code ↗
-          </a>
-        </div>
+        <p class="stack"><b>Built with</b> Kotlin / Android Studio / Gemini API / Text-to-Speech</p>
+        <a class="cta" href="https://github.com/emasmoreno82/MoraCodeAI">View the source on GitHub ↗</a>
       </article>
 
-      <!-- PROYECTO 2: OPEN BAR (NUEVO) -->
-      <article class="card" style="margin-top: 24px;">
-        <div class="project-top">
-          <div>
-            <h3 style="font-size:1.6rem;margin-top:0">Open Bar</h3>
-            <p class="muted">Multiplayer Truco Simulator with Voice Recognition</p>
-          </div>
-          <span class="tag">Indie Game / Beta</span>
-        </div>
-
-       <!-- ESPACIO PARA TUS CAPTURAS DE PANTALLA -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 20px 0;">
-          <img src="logo.jpg" alt="Logo" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
-          <img src="menuprincipal.jpg" alt="Menu Principal" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
-          <img src="modonline.png" alt="Modo online" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
-          <img src="eleccionpersonaje.jpg" alt="Eleccion Personaje" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
-          <img src="eleccionjuego.jpg" alt="Eleccion juego" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
-          <img src="mesaprincipal.jpg" alt="Mesa principal" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);">
-        </div>
-
+      <article class="project">
+        <header>
+          <h3>Open Bar</h3>
+          <span class="meta">Indie game · Beta</span>
+        </header>
+        <p class="tagline">Multiplayer Truco with voice recognition.</p>
         <p>
-          Immersive digital adaptation of the classic Argentine Truco. It combines a stylized visual environment with innovative mechanics, allowing you to play in the traditional way or through real voice commands, replicating the authentic experience of "calling" the moves into the microphone.
+          A digital version of the Argentine card game Truco. You can play with the mouse, or do it the proper way
+          and call the plays into your microphone.
         </p>
-
-        <h4>Main Features</h4>
         <ul>
-          <li><strong>Real-Time Voice System:</strong> Python script dedicated, connected via UDP to process local audio and interpret intentions and volume (shouting).</li>
-          <li><strong>Multiplayer Architecture:</strong> Native network flow (ENetMultiplayerPeer) syncing Lobby, Avatars, and Table without latency.</li>
-          <li><strong>Rules Engine and AI:</strong> Strict digital referee (envido calculations, points at 24/30 flat) and Probability-based Artificial Intelligence for local mode.</li>
+          <li><strong>Voice system:</strong> a dedicated Python script talks to the game over UDP, processes local audio, and picks up both what you say and how loud you say it.</li>
+          <li><strong>Multiplayer:</strong> Godot's ENetMultiplayerPeer keeps the lobby, avatars and table in sync.</li>
+          <li><strong>Rules engine and AI:</strong> a strict referee (envido counting, points at 24/30) and a probability-based opponent for local mode.</li>
         </ul>
+        <div class="shots" tabindex="0" aria-label="Open Bar screenshots">
+          <figure><img loading="lazy" src="logo.jpg" alt="Open Bar logo"></figure>
+          <figure><img loading="lazy" src="menuprincipal.jpg" alt="Open Bar main menu"></figure>
+          <figure><img loading="lazy" src="modonline.png" alt="Online mode screen"></figure>
+          <figure><img loading="lazy" src="eleccionpersonaje.jpg" alt="Character selection"></figure>
+          <figure><img loading="lazy" src="eleccionjuego.jpg" alt="Game mode selection"></figure>
+          <figure><img loading="lazy" src="mesaprincipal.jpg" alt="Main Truco table"></figure>
+        </div>
+        <p class="stack"><b>Built with</b> Godot 4 / GDScript / Python / UDP and P2P networking</p>
+      </article>
+    </section>
 
-        <h4>Tecnologías</h4>
+    <section id="stack">
+      <p class="label">02 / Interests</p>
+      <div class="two">
         <div>
-          <span class="tag">Godot Engine 4</span>
-          <span class="tag">GDScript</span>
-          <span class="tag">Python</span>
-          <span class="tag">Redes UDP / P2P</span>
+          <h3>Application development</h3>
+          <p>Designing, building and debugging software, and getting better at all three.</p>
         </div>
-      </article>
-
+        <div>
+          <h3>AI in real products</h3>
+          <p>Seeing how far AI APIs can go inside apps people actually use, especially for learning.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="container">
-      <p class="eyebrow">Technical Interests</p>
-      <h2>What I'm working with</h2>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Application Development</h3>
-          <p class="muted">
-            Building applications and learning software design,
-            implementation and debugging.
+    <section id="certs">
+      <p class="label">03 / Certificates</p>
+      <div class="cert">
+        <div>
+          <h3>Introduction to Artificial Intelligence</h3>
+          <p class="meta">Municipality of Maipú and UNCuyo · first semester 2025 · 6 hours</p>
+          <p>
+            A six-hour workshop on the fundamentals of AI and how it's applied in practice,
+            organized by the National University of Cuyo and the Municipality of Maipú.
           </p>
         </div>
-
-        <div class="card">
-          <h3>Artificial Intelligence</h3>
-          <p class="muted">
-            Exploring how AI APIs can be integrated into useful
-            applications and learning experiences.
-          </p>
-        </div>
+        <img loading="lazy" src="certificado-ia.jpeg" alt="Certificate: Introduction to Artificial Intelligence">
       </div>
     </section>
-   <!-- Certifications Section -->
-<section class="container" id="certifications">
-  <p class="eyebrow">Credentials</p>
-  <h2>Certifications</h2>
 
-  <article class="card">
-    <div class="project-top">
-      <div>
-        <h3 style="font-size:1.6rem;margin-top:0">Introduction to Artificial Intelligence</h3>
-        <p class="muted">Municipality of Maipú, School of Government & UNCuyo</p>
-      </div>
-      <span class="tag">First semester 2025 · 6 hours</span>
-    </div>
-
-    <p>
-      Completed a 6-hour specialized workshop on the fundamentals of Artificial Intelligence. 
-      Organized by the National University of Cuyo (UNCuyo) and the Municipality of Maipú, 
-      this program provided essential knowledge on AI concepts and their practical applications.
-    </p>
-
-    <!-- Certificado centrado y bien proporcionado -->
-    <div style="margin-top: 24px; text-align: center;">
-      <img 
-        src="certificado-ia.jpeg" 
-        alt="Certificate: Introduction to Artificial Intelligence" 
-        style="width: 100%; max-width: 650px; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.3); display: inline-block;"
-      >
-    </div>
-  </article>
-</section>
-
-    <section class="container" id="contact">
-      <div class="card">
-        <p class="eyebrow">Get in Touch</p>
-        <h2>Let's connect.</h2>
-        <p class="muted">
-          I'm interested in junior software development opportunities
-          where I can contribute, learn and grow as a developer.
-        </p>
-        <div class="buttons">
-          <a class="button primary"
-             href="https://github.com/emasmoreno82"
-             target="_blank" rel="noopener noreferrer">
-            Contact me through GitHub ↗
-          </a>
-        </div>
-      </div>
+    <section id="contact" class="contact">
+      <p class="label">04 / Contact</p>
+      <p>
+        I'm looking for a junior software development role where I can contribute from the first week
+        and keep learning from people who know more than I do.
+      </p>
+      <a class="big" href="https://github.com/emasmoreno82">Write to me through GitHub ↗</a>
+      <p class="copy">© 2026 Emanuel Moreno</p>
     </section>
+
   </main>
-
-  <footer>
-    <div class="container">
-      <p>© 2026 Emanuel Moreno · Built with HTML and CSS.</p>
-      <p><a href="https://github.com/emasmoreno82">GitHub</a></p>
-    </div>
-  </footer>
+</div>
 </body>
 </html>
